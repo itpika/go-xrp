@@ -1,18 +1,14 @@
 package data
 
-// import (
-// 	"fmt"
-// 	"testing"
+import (
+	"testing"
 
-// 	. "github.com/itpika/go-xrp/testing"
-// 	. "gopkg.in/check.v1"
-// )
+	. "gopkg.in/check.v1"
+)
 
-// func Test(t *testing.T) { TestingT(t) }
+type AmountSuite struct{}
 
-// type AmountSuite struct{}
-
-// var _ = Suite(&AmountSuite{})
+var _ = Suite(&AmountSuite{})
 
 // var amountTests = TestSlice{
 // 	// {amountCheck("0").Add(amountCheck("-1")).ToHuman(), Equals, "-1", "Negatives"},
@@ -120,79 +116,66 @@ package data
 // 	{checkBinaryMarshal(amountCheck("-0.1/USD/rNDKeo9RrCiRdfsMG8AdoZvNZxHASGzbZL")).String(), Equals, "-0.1/USD/rNDKeo9RrCiRdfsMG8AdoZvNZxHASGzbZL", "Binary Marshal -0.1/USD/rNDKeo9RrCiRdfsMG8AdoZvNZxHASGzbZL"},
 // }
 
-// func subCheck(a, b string) *Amount {
-// 	if sum, err := amountCheck(a).Subtract(amountCheck(b)); err != nil {
-// 		panic(err)
-// 	} else {
-// 		return sum
-// 	}
-// }
+func subCheck(a, b string) *Amount {
+	if sum, err := amountCheck(a).Subtract(amountCheck(b)); err != nil {
+		panic(err)
+	} else {
+		return sum
+	}
+}
 
-// func addCheck(a, b string) *Amount {
-// 	if sum, err := amountCheck(a).Add(amountCheck(b)); err != nil {
-// 		panic(err)
-// 	} else {
-// 		return sum
-// 	}
-// }
+func addCheck(a, b string) *Amount {
+	if sum, err := amountCheck(a).Add(amountCheck(b)); err != nil {
+		panic(err)
+	} else {
+		return sum
+	}
+}
 
-// func mulCheck(a, b string) *Amount {
-// 	if product, err := amountCheck(a).Multiply(amountCheck(b)); err != nil {
-// 		panic(err)
-// 	} else {
-// 		return product
-// 	}
-// }
+func mulCheck(a, b string) *Amount {
+	if product, err := amountCheck(a).Multiply(amountCheck(b)); err != nil {
+		panic(err)
+	} else {
+		return product
+	}
+}
 
-// func divCheck(a, b string) *Amount {
-// 	if quotient, err := amountCheck(a).Divide(amountCheck(b)); err != nil {
-// 		panic(err)
-// 	} else {
-// 		return quotient
-// 	}
-// }
+func divCheck(a, b string) *Amount {
+	if quotient, err := amountCheck(a).Divide(amountCheck(b)); err != nil {
+		panic(err)
+	} else {
+		return quotient
+	}
+}
 
-// func amountCheck(v interface{}) *Amount {
-// 	if a, err := NewAmount(v); err != nil {
-// 		panic(err)
-// 	} else {
-// 		return a
-// 	}
-// }
+func amountCheck(v interface{}) *Amount {
+	if a, err := NewAmount(v); err != nil {
+		panic(err)
+	} else {
+		return a
+	}
+}
 
-// func equalCheck(a, b string) bool {
-// 	return amountCheck(a).Equals(*amountCheck(b))
-// }
+func equalCheck(a, b string) bool {
+	return amountCheck(a).Equals(*amountCheck(b))
+}
 
-// func (s *AmountSuite) TestAmount(c *C) {
-// 	amountTests.Test(c)
-// }
+func checkBinaryMarshal(v1 *Amount) *Amount {
+	var b []byte
+	var err error
 
-// func ExampleValue_Add() {
-// 	v1, _ := NewValue("100", false)
-// 	v2, _ := NewValue("200.199", false)
-// 	sum, _ := v1.Add(*v2)
-// 	fmt.Println(v1.String())
-// 	fmt.Println(v2.String())
-// 	fmt.Println(sum.String())
-// 	// Output:
-// 	// 100
-// 	// 200.199
-// 	// 300.199
-// }
+	if b, err = v1.MarshalBinary(); err != nil {
+		panic(err)
+	}
 
-// func checkBinaryMarshal(v1 *Amount) *Amount {
-// 	var b []byte
-// 	var err error
+	v2 := &Amount{}
+	if err = v2.UnmarshalBinary(b); err != nil {
+		panic(err)
+	}
 
-// 	if b, err = v1.MarshalBinary(); err != nil {
-// 		panic(err)
-// 	}
+	return v2
+}
 
-// 	v2 := &Amount{}
-// 	if err = v2.UnmarshalBinary(b); err != nil {
-// 		panic(err)
-// 	}
-
-// 	return v2
-// }
+func TestA(t *testing.T) {
+	amountCheck("123./USD/rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh").String()
+}

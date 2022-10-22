@@ -4,10 +4,10 @@ import (
 	"encoding/hex"
 	"fmt"
 	"math/rand"
-	"os"
 	"testing"
 	"time"
 
+	"github.com/btcsuite/btcd/btcec"
 	"github.com/itpika/go-xrp/data"
 )
 
@@ -18,15 +18,28 @@ const (
 	to_private   = "c57891a6f2212dd312a12cb9323e69b6ad8a0faaf8435ca533876a7c12b80ae8"
 )
 
-func TestClient_Submit(t *testing.T) {
-	os.Setenv("https_proxy", "127.0.0.1:50798")
+func TestClient(t *testing.T) {
+	// os.Setenv("https_proxy", "127.0.0.1:50798")
 	// utils.CheckEvnHTTPProxy()
+	pb, err := hex.DecodeString(from_private)
+	if err != nil {
+		t.Fatal(err)
+	}
+	pri, _ := btcec.PrivKeyFromBytes(btcec.S256(), pb)
+	fmt.Println(hex.EncodeToString(pri.D.Bytes()))
+	return
+
 	fromAccount, _ := data.NewAccountFromAddress(to)
 	toAccount, _ := data.NewAccountFromAddress(from)
 
 	account, err := client.GetAccountInfo(to)
 	if err != nil {
-		panic(err)
+		t.Fatal(err)
+	}
+	account.AccountData = &AccountInfoData{Sequence: 1}
+	account.Status = "success"
+	if account.Status != "success" {
+		t.Fatal(account.Status)
 	}
 	fmt.Println("get account seq: ", account.AccountData.Sequence)
 

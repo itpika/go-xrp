@@ -7,10 +7,17 @@ import (
 )
 
 func TestGenKey(t *testing.T) {
-	secret := "snh1zUj8AKjdLPDRapFGpJeaBRDHm"
+	// secret := "snh1zUj8AKjdLPDRapFGpJeaBRDHm"
+	secret := "sEdTpVFAvY7MkCQKiX6TF13Yw33Hr54"
 	seed, err := NewRippleHash(secret)
+	if err != nil {
+		t.Fatal(err)
+	}
 	fmt.Printf("%x\n", seed.Payload())
 	key, err := NewECDSAKey(seed.Payload())
+	if err != nil {
+		t.Fatal(err)
+	}
 	var sequenceZero uint32
 	h, err := AccountPrivateKey(key, &sequenceZero)
 	if err != nil {

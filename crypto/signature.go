@@ -3,7 +3,7 @@ package crypto
 import (
 	"fmt"
 
-	"github.com/btcsuite/btcd/btcec/v2"
+	"github.com/btcsuite/btcd/btcec"
 	"golang.org/x/crypto/ed25519"
 )
 
