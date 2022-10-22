@@ -51,7 +51,7 @@ func TestGetAccountTransaction(t *testing.T) {
 	address := "rBWXYuhqESshBv6a29sMqJ59yrotwpsupf"
 	resp, err := client.GetAccountTransactions(address, map[string]string{"limit": "30"})
 	if err != nil {
-		t.Error(err)
+		t.Fatal(err)
 	}
 	res, _ := json.Marshal(resp)
 	fmt.Printf("%s\n", res)

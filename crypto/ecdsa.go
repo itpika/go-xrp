@@ -2,11 +2,14 @@ package crypto
 
 import (
 	"crypto/rand"
+	"crypto/sha256"
 	"encoding/binary"
 	"math/big"
 
 	"github.com/btcsuite/btcd/btcec"
+	"github.com/cosmos/btcutil"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/mr-tron/base58"
 )
 
 var (
@@ -87,4 +90,18 @@ func (k *EcdsaKey) Public(sequence *uint32) []byte {
 		return k.PubKey().SerializeCompressed()
 	}
 	return k.generateKey(*sequence).PubKey().SerializeCompressed()
+}
+
+func (k *EcdsaKey) EncodeAddressString(compressed bool) string {
+	hash160 := btcutil.Hash160(k.PubKey().SerializeCompressed())
+	b := make([]byte, 0, 1+len(hash160)+4)
+	b = append(b, 0)
+	b = append(b, hash160...)
+
+	h := sha256.Sum256(b)
+	h2 := sha256.Sum256(h[:])
+	checkSum := h2[:4]
+	b = append(b, checkSum...)
+
+	return base58.EncodeAlphabet(b, base58.NewAlphabet(ALPHABET))
 }

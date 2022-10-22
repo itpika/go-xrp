@@ -3,6 +3,8 @@ package crypto
 import (
 	"fmt"
 	"math/big"
+
+	"github.com/mr-tron/base58"
 )
 
 // First byte is the network
@@ -93,7 +95,7 @@ func newHash(b []byte, version HashVersion) (Hash, error) {
 }
 
 func newHashFromString(s string) (Hash, error) {
-	decoded, err := Base58Decode(s, ALPHABET)
+	decoded, err := base58.DecodeAlphabet(s, base58.NewAlphabet(ALPHABET))
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +104,7 @@ func newHashFromString(s string) (Hash, error) {
 
 func (h hash) String() string {
 	b := append(hash{byte(h.Version())}, h.Payload()...)
-	return Base58Encode(b, ALPHABET)
+	return base58.EncodeAlphabet(b, base58.NewAlphabet(ALPHABET))
 }
 
 func (h hash) Version() HashVersion {
