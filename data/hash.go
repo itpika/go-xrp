@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/yancaitech/go-xrp/crypto"
+	"github.com/itpika/go-xrp/crypto"
 )
 
 type KeyType int

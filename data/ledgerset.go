@@ -5,7 +5,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/willf/bitset"
+	// "github.com/willf/bitset"
+	"github.com/bits-and-blooms/bitset"
 )
 
 type LedgerSlice []uint32

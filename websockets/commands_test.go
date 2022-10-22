@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/yancaitech/go-xrp/data"
+	"github.com/itpika/go-xrp/data"
 	. "gopkg.in/check.v1"
 )
 

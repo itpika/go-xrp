@@ -8,8 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/yancaitech/go-utils"
-	"github.com/yancaitech/go-xrp/data"
+	"github.com/itpika/go-xrp/data"
 )
 
 const (
@@ -21,7 +20,7 @@ const (
 
 func TestClient_Submit(t *testing.T) {
 	os.Setenv("https_proxy", "127.0.0.1:50798")
-	utils.CheckEvnHTTPProxy()
+	// utils.CheckEvnHTTPProxy()
 	fromAccount, _ := data.NewAccountFromAddress(to)
 	toAccount, _ := data.NewAccountFromAddress(from)
 

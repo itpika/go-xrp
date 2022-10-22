@@ -4,8 +4,7 @@ import (
 	"bytes"
 	"crypto/rand"
 
-	"github.com/yancaitech/go-utils"
-	"golang.org/x/crypto/ed25519"
+	"crypto/ed25519"
 )
 
 type ed25519key struct {
@@ -43,7 +42,6 @@ func NewEd25519Key(seed []byte) (*ed25519key, error) {
 		return nil, err
 	}
 	var k ed25519key
-	utils.ByteSliceCopy(priv, 0, k.priv[:], 0, 64)
+	copy(k.priv[:], priv)
 	return &k, nil
-	//return &ed25519key{[]byte(priv)}, nil
 }

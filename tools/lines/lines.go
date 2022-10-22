@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/yancaitech/go-xrp/data"
-	"github.com/yancaitech/go-xrp/terminal"
-	"github.com/yancaitech/go-xrp/websockets"
+	"github.com/itpika/go-xrp/data"
+	"github.com/itpika/go-xrp/terminal"
+	"github.com/itpika/go-xrp/websockets"
 )
 
 const usage = `Usage: lines [ripple address] [options]

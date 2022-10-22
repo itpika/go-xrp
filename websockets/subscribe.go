@@ -3,7 +3,7 @@ package websockets
 import (
 	"encoding/json"
 
-	"github.com/yancaitech/go-xrp/data"
+	"github.com/itpika/go-xrp/data"
 )
 
 // Fields from subscribed ledger stream messages

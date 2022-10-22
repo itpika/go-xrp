@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/yancaitech/go-xrp/crypto"
-	"github.com/yancaitech/go-xrp/tools/http"
+	"github.com/itpika/go-xrp/crypto"
+	"github.com/itpika/go-xrp/tools/http"
 )
 
 // GenAddress 生成账户地址

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/yancaitech/go-xrp/data"
+	"github.com/itpika/go-xrp/data"
 )
 
 var counter uint64

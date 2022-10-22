@@ -12,9 +12,9 @@ import (
 	"strconv"
 
 	"github.com/golang/glog"
-	"github.com/yancaitech/go-xrp/data"
-	"github.com/yancaitech/go-xrp/terminal"
-	"github.com/yancaitech/go-xrp/websockets"
+	"github.com/itpika/go-xrp/data"
+	"github.com/itpika/go-xrp/terminal"
+	"github.com/itpika/go-xrp/websockets"
 )
 
 const usage = `Usage: explain [tx hash|ledger sequence|ripple address|-] [options]

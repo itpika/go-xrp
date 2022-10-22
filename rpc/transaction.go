@@ -7,9 +7,9 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/yancaitech/go-xrp/crypto"
-	"github.com/yancaitech/go-xrp/data"
-	"github.com/yancaitech/go-xrp/tools/http"
+	"github.com/itpika/go-xrp/crypto"
+	"github.com/itpika/go-xrp/data"
+	"github.com/itpika/go-xrp/tools/http"
 )
 
 const (

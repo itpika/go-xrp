@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/yancaitech/go-xrp/config"
+	"github.com/itpika/go-xrp/config"
 )
 
 var (

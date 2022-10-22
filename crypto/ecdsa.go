@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"math/big"
 
-	"github.com/btcsuite/btcd/btcec"
-	cryptoLib "github.com/yancaitech/go-ethereum/crypto"
+	"github.com/btcsuite/btcd/btcec/v2"
+	"github.com/ethereum/go-ethereum/crypto"
 )
 
 var (
@@ -44,7 +44,7 @@ func NewECDSAKey(seed []byte) (*EcdsaKey, error) {
 
 // GenEcdsaKey 生成 secp256k1 key
 func GenEcdsaKey() (*EcdsaKey, error) {
-	key, err := cryptoLib.GenerateKey()
+	key, err := crypto.GenerateKey()
 	if err != nil {
 		return nil, err
 	}

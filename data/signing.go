@@ -1,7 +1,7 @@
 package data
 
 import (
-	"github.com/yancaitech/go-xrp/crypto"
+	"github.com/itpika/go-xrp/crypto"
 )
 
 func Sign(s Signer, key crypto.Key, sequence *uint32) error {

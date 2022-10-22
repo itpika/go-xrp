@@ -7,8 +7,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/yancaitech/go-xrp/data"
-	"github.com/yancaitech/go-xrp/websockets"
+	"github.com/itpika/go-xrp/data"
+	"github.com/itpika/go-xrp/websockets"
 )
 
 func checkErr(err error, quit bool) {

@@ -14,7 +14,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/yancaitech/go-xrp/crypto"
+	"github.com/itpika/go-xrp/crypto"
 )
 
 var (

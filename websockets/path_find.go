@@ -1,7 +1,7 @@
 package websockets
 
 import (
-	"github.com/yancaitech/go-xrp/data"
+	"github.com/itpika/go-xrp/data"
 )
 
 // https://ripple.com/build/rippled-apis/#path-find

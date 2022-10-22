@@ -6,8 +6,8 @@ import (
 	"reflect"
 
 	"github.com/fatih/color"
-	"github.com/yancaitech/go-xrp/data"
-	"github.com/yancaitech/go-xrp/websockets"
+	"github.com/itpika/go-xrp/data"
+	"github.com/itpika/go-xrp/websockets"
 )
 
 type Flag uint32
