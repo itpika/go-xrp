@@ -15,6 +15,7 @@ import (
 const (
 	testNet = "https://s.altnet.rippletest.net:51234"
 	devNet  = "https://s.devnet.rippletest.net:51234"
+	mainNet = "https://s1.ripple.com:51234/"
 )
 
 var (

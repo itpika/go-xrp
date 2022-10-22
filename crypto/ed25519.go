@@ -3,8 +3,12 @@ package crypto
 import (
 	"bytes"
 	"crypto/rand"
+	"crypto/sha256"
 
 	"crypto/ed25519"
+
+	"github.com/cosmos/btcutil"
+	"github.com/yancaitech/go-xrp/crypto"
 )
 
 type ed25519key struct {
@@ -44,4 +48,19 @@ func NewEd25519Key(seed []byte) (*ed25519key, error) {
 	var k ed25519key
 	copy(k.priv[:], priv)
 	return &k, nil
+}
+
+func (k *ed25519key) EncodeAddressString() string {
+
+	hash160 := btcutil.Hash160(k.Public(nil))
+	b := make([]byte, 0, 1+len(hash160)+4)
+	b = append(b, 0)
+	b = append(b, hash160...)
+
+	h := sha256.Sum256(b)
+	h2 := sha256.Sum256(h[:])
+	checkSum := h2[:4]
+	b = append(b, checkSum...)
+
+	return crypto.Base58Encode(b, crypto.ALPHABET)
 }

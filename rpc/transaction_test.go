@@ -20,31 +20,6 @@ var (
 	to_private   = "c57891a6f2212dd312a12cb9323e69b6ad8a0faaf8435ca533876a7c12b80ae8"
 )
 
-// func TestEd2519(t *testing.T) {
-// 	hash := sha512.Sum512([]byte("sEdTpVFAvY7MkCQKiX6TF13Yw33Hr54"))
-// 	priv := ed25519.PrivateKey(hash[:])
-
-// 	publicKey := make([]byte, ed25519.PublicKeySize)
-// 	copy(publicKey, priv[32:])
-
-// 	fmt.Println(hex.EncodeToString(priv))
-// 	fmt.Println(hex.EncodeToString(publicKey))
-// 	publicKey = append(publicKey, 0xed)
-
-// 	hash160 := btcutil.Hash160(publicKey)
-// 	b := make([]byte, 0, 1+len(hash160)+4)
-// 	b = append(b, 0)
-// 	b = append(b, hash160...)
-
-// 	h := sha256.Sum256(b)
-// 	h2 := sha256.Sum256(h[:])
-// 	checkSum := h2[:4]
-// 	b = append(b, checkSum...)
-
-// 	fmt.Println(crypto.Base58Encode(b, crypto.ALPHABET))
-
-// }
-
 func TestBase58(t *testing.T) {
 
 	bt, err := hex.DecodeString("0067d91565dff3aed784edc56abe741c5ca80000b7c542ba8e")
