@@ -1,7 +1,6 @@
 package rpc
 
 import (
-	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 	"math/rand"
@@ -11,41 +10,15 @@ import (
 	"github.com/itpika/go-xrp/crypto"
 	"github.com/mr-tron/base58"
 
-	"github.com/cosmos/btcutil"
 	"github.com/itpika/go-xrp/data"
 )
 
 var (
-	from = "rsTwerzJEGiKh7WjJcC3Q7776D4eGvDXPz"
-	to   = "rG5AB117rJ7e2MZGKE4XfaVK5BdyHBxcSm"
-	// from_private = "c1dd3d6ba77aaa58a15f706e54c4d1dd59b2f61fdb621fd2dd80e204f0eaa2dc"
-	from_private = "71d937e941203f76e5da4ae1fcba049bf2a7c80a002d8d9c60b69a21919390f9"
+	from         = "rsTwerzJEGiKh7WjJcC3Q7776D4eGvDXPz"
+	to           = "rG5AB117rJ7e2MZGKE4XfaVK5BdyHBxcSm"
+	from_private = "c1dd3d6ba77aaa58a15f706e54c4d1dd59b2f61fdb621fd2dd80e204f0eaa2dc"
 	to_private   = "c57891a6f2212dd312a12cb9323e69b6ad8a0faaf8435ca533876a7c12b80ae8"
 )
-
-func TestPubToAddr(t *testing.T) {
-
-	// pri: 71d937e941203f76e5da4ae1fcba049bf2a7c80a002d8d9c60b69a21919390f9
-	// pub: 02a70106c3935d7e5a607f523dd3dc46be7a061a0e424f91b3ccc36b37973b0325
-	bt, err := hex.DecodeString("02a70106c3935d7e5a607f523dd3dc46be7a061a0e424f91b3ccc36b37973b0325")
-	if err != nil {
-		t.Fatal(err)
-	}
-	hash160 := btcutil.Hash160(bt)
-	b := make([]byte, 0, 1+len(hash160)+4)
-	b = append(b, 0)
-	b = append(b, hash160...)
-
-	h := sha256.Sum256(b)
-	h2 := sha256.Sum256(h[:])
-	checkSum := h2[:4]
-	b = append(b, checkSum...)
-
-	// 0067d91565dff3aed784edc56abe741c5ca80000b7c542ba8e
-	fmt.Println(hex.EncodeToString(b))
-	fmt.Println(base58.EncodeAlphabet(b, base58.NewAlphabet(crypto.ALPHABET)))
-
-}
 
 // func TestEd2519(t *testing.T) {
 // 	hash := sha512.Sum512([]byte("sEdTpVFAvY7MkCQKiX6TF13Yw33Hr54"))
@@ -82,17 +55,6 @@ func TestBase58(t *testing.T) {
 }
 
 func TestClient(t *testing.T) {
-	// wif, err := btcutil.DecodeWIF("5KQuaZDhBmawwecB3DjZhYjHXSSgyDWtikqnLXshemYXmtYkyLV")
-	// if err != nil {
-	// 	t.Fatal(err)
-	// }
-	priBt, err := hex.DecodeString(from_private)
-	if err != nil {
-		t.Fatal(err)
-	}
-	fmt.Println(crypto.LoadECDSKey(priBt).EncodeAddressString(true))
-	fmt.Println(hex.EncodeToString(crypto.LoadECDSKey(priBt).Public(nil)))
-	return
 
 	fromAccount, _ := data.NewAccountFromAddress(to)
 	toAccount, _ := data.NewAccountFromAddress(from)

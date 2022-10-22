@@ -1,9 +1,15 @@
 package rpc
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"testing"
+
+	"github.com/cosmos/btcutil"
+	"github.com/itpika/go-xrp/crypto"
+	"github.com/mr-tron/base58"
 )
 
 const (
@@ -16,6 +22,40 @@ var (
 	//client = NewClient("http://47.75.70.201:9003", "http://47.75.70.201:9003")
 	//client = NewClient("https://data.ripple.com")
 )
+
+func TestAddress(t *testing.T) {
+	priv := "71d937e941203f76e5da4ae1fcba049bf2a7c80a002d8d9c60b69a21919390f9"
+	priBt, err := hex.DecodeString(priv)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(crypto.LoadECDSKey(priBt).EncodeAddressString(true))
+	fmt.Println(hex.EncodeToString(crypto.LoadECDSKey(priBt).Public(nil)))
+}
+
+func TestPubToAddr(t *testing.T) {
+
+	// pri: 71d937e941203f76e5da4ae1fcba049bf2a7c80a002d8d9c60b69a21919390f9
+	// pub: 02a70106c3935d7e5a607f523dd3dc46be7a061a0e424f91b3ccc36b37973b0325
+	bt, err := hex.DecodeString("02a70106c3935d7e5a607f523dd3dc46be7a061a0e424f91b3ccc36b37973b0325")
+	if err != nil {
+		t.Fatal(err)
+	}
+	hash160 := btcutil.Hash160(bt)
+	b := make([]byte, 0, 1+len(hash160)+4)
+	b = append(b, 0)
+	b = append(b, hash160...)
+
+	h := sha256.Sum256(b)
+	h2 := sha256.Sum256(h[:])
+	checkSum := h2[:4]
+	b = append(b, checkSum...)
+
+	// 0067d91565dff3aed784edc56abe741c5ca80000b7c542ba8e
+	fmt.Println(hex.EncodeToString(b))
+	fmt.Println(base58.EncodeAlphabet(b, base58.NewAlphabet(crypto.ALPHABET)))
+
+}
 
 func TestGetAccountBalance2(t *testing.T) {
 	address := "rp1ZeT45RixCWJkFvc53SYqpgLjxNwjWiR"
