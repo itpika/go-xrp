@@ -12,13 +12,13 @@ import (
 )
 
 const (
-	testNet = "https://s.altnet.rippletest.net:51234"
-	devNet  = "https://s.devnet.rippletest.net:51234"
-	mainNet = "https://s1.ripple.com:51234/"
+	TestNet = "https://s.altnet.rippletest.net:51234"
+	DevNet  = "https://s.devnet.rippletest.net:51234"
+	MainNet = "https://s1.ripple.com:51234/"
 )
 
 var (
-	client = NewClient(testNet, "https://testnet.data.api.ripple.com")
+	client = NewClient(TestNet)
 	//client = NewClient("http://47.75.70.201:9003", "http://47.75.70.201:9003")
 	//client = NewClient("https://data.ripple.com")
 )
