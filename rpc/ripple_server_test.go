@@ -10,7 +10,7 @@ func TestGetServerInfo(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	fmt.Println(res)
+	fmt.Println(res.State.ValidatedLedger)
 }
 
 func TestGetServerFee(t *testing.T) {

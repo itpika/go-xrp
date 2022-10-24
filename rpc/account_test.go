@@ -11,16 +11,8 @@ import (
 	"github.com/mr-tron/base58"
 )
 
-const (
-	TestNet = "https://s.altnet.rippletest.net:51234"
-	DevNet  = "https://s.devnet.rippletest.net:51234"
-	MainNet = "https://s1.ripple.com:51234/"
-)
-
 var (
 	client = NewClient(TestNet)
-	//client = NewClient("http://47.75.70.201:9003", "http://47.75.70.201:9003")
-	//client = NewClient("https://data.ripple.com")
 )
 
 func TestAddress(t *testing.T) {
