@@ -15,3 +15,13 @@ func (c *Client) GetServerInfo() (*ServerInfoResult, error) {
 	err = json.Unmarshal(resp, res)
 	return res.Result, err
 }
+
+func (c *Client) GetServerFee() (*FeeResult, error) {
+	resp, err := http.HttpPost(c.rpcJsonURL, []byte(`{"method":"fee", "params": [{}]}`))
+	if err != nil {
+		return nil, err
+	}
+	res := &ServerFee{}
+	err = json.Unmarshal(resp, res)
+	return res.Result, err
+}

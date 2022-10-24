@@ -10,5 +10,13 @@ func TestGetServerInfo(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log(fmt.Sprintf("%+v", res))
+	fmt.Println(res)
+}
+
+func TestGetServerFee(t *testing.T) {
+	res, err := client.GetServerFee()
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(res.Drops)
 }

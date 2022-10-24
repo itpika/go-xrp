@@ -51,7 +51,11 @@ func TestClient(t *testing.T) {
 	}
 
 	amount, _ := data.NewAmount("3.9" + "/XRP")
-	feeVal, _ := data.NewValue("12", true)
+	feeResult, err := client.GetServerFee()
+	if err != nil {
+		t.Fatal(err)
+	}
+	feeVal, _ := data.NewValue(feeResult.Drops.BaseFee, true)
 
 	last := server.State.ValidatedLedger.Seq + 100
 
