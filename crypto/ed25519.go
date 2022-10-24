@@ -8,7 +8,7 @@ import (
 	"crypto/ed25519"
 
 	"github.com/cosmos/btcutil"
-	"github.com/yancaitech/go-xrp/crypto"
+	"github.com/mr-tron/base58"
 )
 
 type ed25519key struct {
@@ -61,6 +61,5 @@ func (k *ed25519key) EncodeAddressString() string {
 	h2 := sha256.Sum256(h[:])
 	checkSum := h2[:4]
 	b = append(b, checkSum...)
-
-	return crypto.Base58Encode(b, crypto.ALPHABET)
+	return base58.EncodeAlphabet(b, base58.NewAlphabet(ALPHABET))
 }

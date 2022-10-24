@@ -3,7 +3,6 @@ package rpc
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -19,7 +18,7 @@ const (
 )
 
 var (
-	client = NewClient(devNet, "https://testnet.data.api.ripple.com")
+	client = NewClient(testNet, "https://testnet.data.api.ripple.com")
 	//client = NewClient("http://47.75.70.201:9003", "http://47.75.70.201:9003")
 	//client = NewClient("https://data.ripple.com")
 )
@@ -58,19 +57,8 @@ func TestPubToAddr(t *testing.T) {
 
 }
 
-func TestGetAccountBalance2(t *testing.T) {
-	address := "rp1ZeT45RixCWJkFvc53SYqpgLjxNwjWiR"
-	res, err := client.GetAccountBalances(address, map[string]string{})
-	if err != nil {
-		t.Error("get err: ", err)
-	}
-	for _, v := range res.Balances {
-		fmt.Printf("balance: %+v\n", v)
-	}
-}
-
 func TestGetAccountInfo(t *testing.T) {
-	address := "rsTwerzJEGiKh7WjJcC3Q7776D4eGvDXPz"
+	address := "r97g8NCTZpPt5vacawMvbeoeh3fYSSuJLq"
 	res, err := client.GetAccountInfo(address)
 	if err != nil {
 		t.Error("err: ", err)
@@ -83,19 +71,9 @@ func TestGenAddress(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log("pri: ", pri)
-	t.Log("pub: ", pub)
-	t.Log("addr: ", addr)
-}
-
-func TestGetAccountTransaction(t *testing.T) {
-	address := "rBWXYuhqESshBv6a29sMqJ59yrotwpsupf"
-	resp, err := client.GetAccountTransactions(address, map[string]string{"limit": "30"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	res, _ := json.Marshal(resp)
-	fmt.Printf("%s\n", res)
+	fmt.Println("pri: ", pri)
+	fmt.Println("pub: ", pub)
+	fmt.Println("addr: ", addr)
 }
 
 //pri:  d3c34cc4553591860f14fb64dd9562210f57b2e12970e752e54402fc7dd2844f

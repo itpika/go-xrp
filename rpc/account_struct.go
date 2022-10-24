@@ -9,11 +9,21 @@ type AccountInfoResult struct {
 	Status             string
 	LedgerCurrentIndex int64            `json:"ledger_current_index"`
 	AccountData        *AccountInfoData `json:"account_data"`
+	QueueData          *QueueInfoData   `json:"queue_data"`
+}
+type QueueInfoData struct {
+	TxnCount uint64 `json:"txn_count"`
 }
 
 type AccountInfoData struct {
-	Index    string
-	Sequence uint32
+	Index             string
+	Sequence          uint32
+	Balance           string
+	Flags             uint64
+	LedgerEntryType   string
+	OwnerCount        uint64
+	PreviousTxnID     string
+	PreviousTxnLgrSeq uint64
 }
 
 type AccountBalancesStruct struct {

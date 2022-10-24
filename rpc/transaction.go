@@ -4,8 +4,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"net/url"
-	"strconv"
 
 	"github.com/itpika/go-xrp/crypto"
 	"github.com/itpika/go-xrp/data"
@@ -101,27 +99,4 @@ func (c *Client) TX(hash string) (*TxResult, error) {
 	res := &TxResp{}
 	err = json.Unmarshal(resp, res)
 	return res.Result, nil
-}
-
-// https://developers.ripple.com/data-api.html#get-payments
-func (c *Client) Payments(currency string, startTs, endTs int64, limit int, marker string) (*PaymentResp, error) {
-	path := c.apiURL + "/v2/payments/"
-	if currency != "" {
-		path += currency
-	}
-	params := make(url.Values, 0)
-	params.Add("start", strconv.FormatInt(startTs, 10))
-	params.Add("end", strconv.FormatInt(endTs, 10))
-	params.Add("limit", strconv.Itoa(limit))
-	params.Add("marker", marker)
-	path = path + "?" + params.Encode()
-	fmt.Println("path: ", path)
-	resp, err := http.HttpGet(path)
-	if err != nil {
-		return nil, err
-	}
-	fmt.Println("resp: ", string(resp))
-	res := &PaymentResp{}
-	err = json.Unmarshal(resp, res)
-	return res, err
 }
